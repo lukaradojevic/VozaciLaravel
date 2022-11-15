@@ -10,6 +10,15 @@ class Trka extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'naziv',
+        'grad',
+        'drzava',
+        'fond',
+        'pobednik_id',
+    ];
+
+
     public function pobednik()
     {
         return $this->belongsTo(Vozac::class);

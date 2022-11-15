@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\TimSeeder;
+use Database\Seeders\VozacSeeder;
+use Database\Seeders\TrkaSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $tim = new TimSeeder();
+        $tim->run();
+
+        $vozac = new VozacSeeder();
+        $vozac->run();
+
+        $trka = new TrkaSeeder();
+        $trka->run();
     }
 }

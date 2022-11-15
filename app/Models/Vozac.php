@@ -11,6 +11,14 @@ class Vozac extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ime_prezime',
+        'godine',
+        'drzava',
+        'titule',
+        'tim_id'
+    ];
+
     public function tim()
     {
         return $this->belongsTo(Tim::class);
