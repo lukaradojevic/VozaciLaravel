@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthKontroler;
 use App\Http\Controllers\API\TimKontroler;
 use App\Http\Controllers\API\VozacKontroler;
 use Illuminate\Http\Request;
@@ -16,15 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('tim', [TimKontroler::class, 'index']);
-Route::get('tim/{tim}', [TimKontroler::class, 'show']);
-Route::delete('tim/{tim}', [TimKontroler::class, 'destroy']);
-Route::put('tim/{tim}', [TimKontroler::class, 'update']);
+Route::post('register', [AuthKontroler::class, 'register']);
+Route::post('login', [AuthKontroler::class, 'login']);
 
-Route::get('vozac', [VozacKontroler::class, 'index']);
-Route::get('vozac/{vozac}', [VozacKontroler::class, 'show']);
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('tim', [TimKontroler::class, 'index']);
+    Route::get('tim/{tim}', [TimKontroler::class, 'show']);
+    Route::delete('tim/{tim}', [TimKontroler::class, 'destroy']);
+    Route::put('tim/{tim}', [TimKontroler::class, 'update']);
+    Route::get('vozac', [VozacKontroler::class, 'index']);
+    Route::get('vozac/{vozac}', [VozacKontroler::class, 'show']);
+    Route::post('logout', [AuthKontroler::class, 'logout']);
 });
